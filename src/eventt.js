@@ -145,31 +145,3 @@ export default class Eventt {
     }
 
 }
-
-/**
-
-let eventt = new Eventt()
-
-eventt
-    .listen('click', '#id', () => {
-        // callback function
-    }, options)
-
-eventt
-    .listen(['click', 'touch'], ['#id-1', '#id-2'], () => {
-        // callback function
-    })
-
-eventt
-    .unlisten('click', '*')
-
-eventt
-    .unlisten('*', '#id')
-
-eventt
-    .trigger('click', '#id')
-
-eventt
-    .list(['#id-1', '#id-2'])
-
-**/
