@@ -1,0 +1,15 @@
+{
+    "name": "eventt.js",
+    "version": "1.0.0",
+    "description": "Tiny event listeners manager",
+    "main": "src/index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "maoosi <hello@sylvainsimao.fr>",
+    "license": "MIT",
+    "devDependencies": {
+        "fuse-box": "^1.3.128",
+        "uglify-js": "^2.8.16"
+    }
+}
