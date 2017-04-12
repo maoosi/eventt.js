@@ -42,3 +42,10 @@ eventt
 eventt
     .list(['.selector-1', '#selector-2'])
 ```
+
+## Contribute
+
+```bash
+npm run dev
+npm run test
+```

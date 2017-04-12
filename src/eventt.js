@@ -23,8 +23,8 @@ export default class Eventt {
     listen (type, selector, func, opts = false) {
     // add events listeners
         if (type !== undefined && selector !== undefined && typeof func === 'function') {
-            let types = _toArray(type)
-            let selectors = _toArray(selector)
+            let types = this._toArray(type)
+            let selectors = this._toArray(selector)
 
             selectors.forEach((_selector) => {
                 let targets = document.querySelectorAll(_selector)
@@ -52,8 +52,8 @@ export default class Eventt {
     unlisten (type, selector) {
     // remove events listeners
         if (type !== undefined && selector !== undefined) {
-            let types = _toArray(type)
-            let selectors = _toArray(selector)
+            let types = this._toArray(type)
+            let selectors = this._toArray(selector)
 
             selectors.forEach((_selector) => {
                 let targets = document.querySelectorAll(_selector)
@@ -83,8 +83,8 @@ export default class Eventt {
     trigger (type, selector) {
     // trigger events listeners
         if (type !== undefined && selector !== undefined) {
-            let types = _toArray(type)
-            let selectors = _toArray(selector)
+            let types = this._toArray(type)
+            let selectors = this._toArray(selector)
 
             selectors.forEach((_selector) => {
                 let targets = document.querySelectorAll(_selector)
