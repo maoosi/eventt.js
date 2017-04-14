@@ -1,35 +1,48 @@
-import babel from 'rollup-plugin-babel';
-import babelrc from 'babelrc-rollup';
-import strip from 'rollup-plugin-strip';
-import uglify from 'rollup-plugin-uglify';
-import { minify } from 'uglify-js-harmony';
+import babel from 'rollup-plugin-babel'
+import babelrc from 'babelrc-rollup'
+import uglify from 'rollup-plugin-uglify'
+import { minify } from 'uglify-js-harmony'
 
-let pkg = require('./package.json');
-let external = Object.keys(pkg.dependencies);
+let pkg = require('./package.json')
+
+const attribution =
+`/*!
+* ${ pkg.name } ${ pkg.version } - ${ pkg.description }
+*
+* @author       ${ pkg.author }
+* @homepage     ${ pkg.homepage }
+* @copyright    Copyright (c) ${ new Date().getFullYear() } ${ pkg.author }
+* @license      ${ pkg.license }
+* @version      ${ pkg.version }
+*/
+`
 
 export default {
     entry: './src/eventt.js',
     plugins: [
         babel(babelrc()),
-        strip({
-            debugger: true,
-            functions: [ 'console.log', 'assert.*', 'debug', 'alert' ],
-            sourceMap: true
-        }),
-        uglify({}, minify)
+        uglify({
+            output: {
+                comments: (node, comment) => {
+                    return (comment.type === 'comment2' && /@license/i.test(comment.value))
+                }
+            }
+        }, minify)
     ],
-    external: external,
     targets: [
         {
             dest: pkg.main,
             format: 'umd',
-            moduleName: 'eventt',
+            exports: 'default',
+            moduleName: 'Eventt',
+            banner: attribution,
             sourceMap: true
         },
         {
             dest: pkg.module,
             format: 'es',
+            banner: attribution,
             sourceMap: true
         }
     ]
-};
+}

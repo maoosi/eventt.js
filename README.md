@@ -1,12 +1,14 @@
 # Eventt.js
 
-Tiny event listeners manager.
+Tiny 1.2Kb event listeners manager.
+
 
 ## Installation
 
 ```bash
 npm i eventt.js --save
 ```
+
 
 ## Usage
 
@@ -40,12 +42,13 @@ eventt
 
 
 eventt
-    .list(['.selector-1', '#selector-2'])
+    .get('.selector')
 ```
+
 
 ## Contribute
 
 ```bash
-npm run dev
+npm run watch
 npm run test
 ```
