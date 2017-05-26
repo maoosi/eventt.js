@@ -58,7 +58,7 @@ eventt.unlisten("*", ".selector")
 
 Fully supported by Evergreen Browsers (Edge, Opera, Safari, Firefox & Chrome) and IE 10+ browsers.
 
-> For **old browsers support like IE8 or IE9**, you'll need to manually include the following Polyfill library on your website:
+> For **older browsers support like IE9**, you'll need to include the following Polyfill library on your site:
 >
 ```html
 <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
