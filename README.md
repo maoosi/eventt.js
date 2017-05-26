@@ -3,7 +3,7 @@
 🛎️ Tiny 1.4Kb event listeners manager.
 
 
-[![GitHub release](https://img.shields.io/github/release/qubyte/rubidium.svg)](https://github.com/maoosi/eventt.js) [![Gemnasium](https://img.shields.io/gemnasium/mathiasbynens/he.svg)](https://github.com/maoosi/eventt.js) [![label](https://img.shields.io/github/issues-raw/badges/shields/website.svg)](https://github.com/maoosi/eventt.js)
+[![GitHub release](https://img.shields.io/github/release/maoosi/eventt.js.svg)](https://github.com/maoosi/eventt.js) [![Gemnasium](https://img.shields.io/gemnasium/maoosi/eventt.js.svg)](https://github.com/maoosi/eventt.js) [![label](https://img.shields.io/github/issues-raw/badges/shields/website.svg)](https://github.com/maoosi/eventt.js)
 
 
 ## Roadmap
