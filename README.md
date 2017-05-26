@@ -12,6 +12,7 @@
 - [ ] Create demo file for cross-browsers testing
 
 > <sup>1</sup> https://stackoverflow.com/questions/2490825/how-to-trigger-event-in-javascript
+> 
 > <sup>2</sup> http://stackoverflow.com/questions/9046741/get-event-listeners-attached-to-node-using-addeventlistener
 
 
