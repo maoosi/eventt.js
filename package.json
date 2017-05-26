@@ -1,7 +1,7 @@
 {
     "name": "eventt.js",
     "version": "1.0.0",
-    "description": "Tiny 1.2Kb event listeners manager.",
+    "description": "Tiny event listeners manager.",
     "repository": "maoosi/eventt.js",
     "main": "dist/eventt.js",
     "module": "dist/eventt.mjs",
