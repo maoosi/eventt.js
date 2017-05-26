@@ -1,9 +1,6 @@
-# Eventt.js
+# Eventt.js [![Gemnasium](https://img.shields.io/gemnasium/maoosi/eventt.js.svg)](https://github.com/maoosi/eventt.js) [![GitHub release](https://img.shields.io/github/release/maoosi/eventt.js.svg)](https://github.com/maoosi/eventt.js)  [![label](https://img.shields.io/github/issues-raw/badges/maoosi/eventt.js.svg)](https://github.com/maoosi/eventt.js)
 
 🛎️ Tiny 1.4Kb event listeners manager.
-
-
-[![Gemnasium](https://img.shields.io/gemnasium/maoosi/eventt.js.svg)](https://github.com/maoosi/eventt.js) [![GitHub release](https://img.shields.io/github/release/maoosi/eventt.js.svg)](https://github.com/maoosi/eventt.js)  [![label](https://img.shields.io/github/issues-raw/badges/maoosi/eventt.js.svg)](https://github.com/maoosi/eventt.js)
 
 
 ## Roadmap
@@ -12,8 +9,8 @@
 - [ ] Catch all browser events **
 - [ ] Create demo file for cross-browsers testing
 
-> * https://stackoverflow.com/questions/2490825/how-to-trigger-event-in-javascript
-> ** http://stackoverflow.com/questions/9046741/get-event-listeners-attached-to-node-using-addeventlistener
+> \* https://stackoverflow.com/questions/2490825/how-to-trigger-event-in-javascript
+> \*\* http://stackoverflow.com/questions/9046741/get-event-listeners-attached-to-node-using-addeventlistener
 
 
 ## Installation
