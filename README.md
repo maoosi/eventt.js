@@ -11,9 +11,9 @@
 - [ ] Catch all browser events <sup>2</sup>
 - [ ] Create demo file for cross-browsers testing
 
-> <sup>1</sup> https://stackoverflow.com/questions/2490825/how-to-trigger-event-in-javascript
+> <sup>1</sup> <sub><sup>https://stackoverflow.com/questions/2490825/how-to-trigger-event-in-javascript</sup></sub>
 > 
-> <sup>2</sup> http://stackoverflow.com/questions/9046741/get-event-listeners-attached-to-node-using-addeventlistener
+> <sup>2</sup> <sub><sup>http://stackoverflow.com/questions/9046741/get-event-listeners-attached-to-node-using-addeventlistener</sup></sub>
 
 
 ## Installation
