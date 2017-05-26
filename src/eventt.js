@@ -107,8 +107,8 @@ class Eventt {
         return this
     }
 
-    get (selector, callback) {
-    // get events listeners
+    list (selector, callback) {
+    // list events listeners
         if (selector !== undefined && callback !== undefined) {
             let selectors = this._toArray(selector)
             let eventsList = []
@@ -118,7 +118,7 @@ class Eventt {
 
                 if (isTarget) {
                     eventsList.push(_event)
-                    this._debug('info', `Get eventListener ${ _event.eventType } on ${ _event.targetElem.outerHTML }.`)
+                    this._debug('info', `List eventListener ${ _event.eventType } on ${ _event.targetElem.outerHTML }.`)
                 }
             })
 

@@ -40,7 +40,7 @@ eventt.listen("click", "#id", () => { /* callback */ })
 eventt.listen(["click", "resize"], ["#id", ".selector"], () => { /* callback */ }, { /* opts */ })
 
 // getEventListeners
-eventt.get(".selector", (events) => { /* first argument = events array */ })
+eventt.list(".selector", (events) => { /* first argument = events array */ })
 
 // dispatchEvent
 eventt.trigger("click", "*")

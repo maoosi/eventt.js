@@ -43,9 +43,9 @@ describe('Eventt.js', () => {
             t = 0
         })
 
-        // get
-        it('get("#id", (events) => {}) should get 1 eventListener', () => {
-            eventt.get("#id", (events) => {
+        // list
+        it('list("#id", (events) => {}) should list 1 eventListener', () => {
+            eventt.list("#id", (events) => {
                 strictEqual(events.length, 1)
             })
         })
@@ -74,9 +74,9 @@ describe('Eventt.js', () => {
             t = 0
         })
 
-        // get
-        it('get("*", (events) => {}) should get 2 eventListener', () => {
-            eventt.get("*", (events) => {
+        // list
+        it('list("*", (events) => {}) should list 2 eventListener', () => {
+            eventt.list("*", (events) => {
                 strictEqual(events.length, 2)
             })
         })
@@ -111,16 +111,16 @@ describe('Eventt.js', () => {
             t = 0
         })
 
-        // get
-        it('get("*", (events) => {}) should get 4 eventListener', () => {
-            eventt.get("*", (events) => {
+        // list
+        it('list("*", (events) => {}) should list 4 eventListener', () => {
+            eventt.list("*", (events) => {
                 strictEqual(events.length, 4)
             })
         })
 
-        // get
-        it('get("#id2", (events) => {}) should get 2 eventListener', () => {
-            eventt.get("#id2", (events) => {
+        // list
+        it('list("#id2", (events) => {}) should list 2 eventListener', () => {
+            eventt.list("#id2", (events) => {
                 strictEqual(events.length, 2)
             })
         })
@@ -176,37 +176,37 @@ describe('Eventt.js', () => {
             t = 0
         })
 
-        // get
-        it('get(["#id", "#id2"], (events) => {}) should get 2 eventListener', () => {
-            eventt.get(["#id", "#id2"], (events) => {
+        // list
+        it('list(["#id", "#id2"], (events) => {}) should list 2 eventListener', () => {
+            eventt.list(["#id", "#id2"], (events) => {
                 strictEqual(events.length, 2)
             })
         })
 
-        // get
-        it('get("#id", (events) => {}) should get 1 eventListener', () => {
-            eventt.get("#id", (events) => {
+        // list
+        it('list("#id", (events) => {}) should list 1 eventListener', () => {
+            eventt.list("#id", (events) => {
                 strictEqual(events.length, 1)
             })
         })
 
-        // get
-        it('get(".selector", (events) => {}) should get 2 eventListener', () => {
-            eventt.get(".selector", (events) => {
+        // list
+        it('list(".selector", (events) => {}) should list 2 eventListener', () => {
+            eventt.list(".selector", (events) => {
                 strictEqual(events.length, 2)
             })
         })
 
-        // get
-        it('get("*", (events) => {}) should get 3 eventListener', () => {
-            eventt.get("*", (events) => {
+        // list
+        it('list("*", (events) => {}) should list 3 eventListener', () => {
+            eventt.list("*", (events) => {
                 strictEqual(events.length, 3)
             })
         })
 
-        // get
-        it('get(".no-existing", (events) => {}) should get 0 eventListener', () => {
-            eventt.get(".no-existing", (events) => {
+        // list
+        it('list(".no-existing", (events) => {}) should list 0 eventListener', () => {
+            eventt.list(".no-existing", (events) => {
                 strictEqual(events.length, 0)
             })
         })
