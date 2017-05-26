@@ -5,7 +5,7 @@
 [![Gemnasium](https://img.shields.io/gemnasium/maoosi/eventt.js.svg)](https://github.com/maoosi/eventt.js) [![GitHub release](https://img.shields.io/github/release/maoosi/eventt.js.svg)](https://github.com/maoosi/eventt.js)  [![label](https://img.shields.io/github/issues-raw/badges/maoosi/eventt.js.svg)](https://github.com/maoosi/eventt.js)
 
 
-## Roadmap
+## Roadmap v1.0.0
 
 - [ ] Dispatch browser events instead of function execution <sup>1</sup> <sub><sup>https://stackoverflow.com/questions/2490825/how-to-trigger-event-in-javascript</sup></sub>
 - [ ] Catch all browser events <sup>2</sup> <sub><sup>http://stackoverflow.com/questions/9046741/get-event-listeners-attached-to-node-using-addeventlistener</sup></sub>
