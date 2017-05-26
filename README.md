@@ -1,54 +1,79 @@
 # Eventt.js
 
-Tiny 1.2Kb event listeners manager.
+🛎️ Tiny 1.4Kb event listeners manager.
+
+
+[![GitHub release](https://img.shields.io/github/release/qubyte/rubidium.svg)](https://github.com/maoosi/eventt.js) [![Gemnasium](https://img.shields.io/gemnasium/mathiasbynens/he.svg)](https://github.com/maoosi/eventt.js) [![label](https://img.shields.io/github/issues-raw/badges/shields/website.svg)](https://github.com/maoosi/eventt.js)
+
+
+## Roadmap
+
+- [ ] Dispatch browser events instead of function execution https://stackoverflow.com/questions/2490825/how-to-trigger-event-in-javascript
+- [ ] Catch all browser events http://stackoverflow.com/questions/9046741/get-event-listeners-attached-to-node-using-addeventlistener
+- [ ] Create demo file for cross-browsers testing
 
 
 ## Installation
 
+### Using NPM
+
 ```bash
 npm i eventt.js --save
+```
+
+### Unpkg CDN
+
+```html
+<script src="https://unpkg.com/eventt.js@1.0.0/dist/eventt.js"></script>
 ```
 
 
 ## Usage
 
 ```javascript
-let eventt = new Eventt()
+import Eventt from 'eventt.js'
 
+// create events instance/group, optional debug setting
+const eventt = Eventt({ /* debug: true */ })
 
-eventt
-	.listen('click', '.selector', () => {
-	    // callback function
-	}, { /* options */ })
+// addEventListener
+eventt.listen("click", "#id", () => { /* callback */ })
+eventt.listen(["click", "resize"], ["#id", ".selector"], () => { /* callback */ }, { /* opts */ })
 
-eventt
-    .listen(['click', 'resize'], ['.selector-1', '#selector-2'], () => {
-        // callback function
-    })
+// getEventListeners
+eventt.get(".selector", (events) => { /* first argument = events array */ })
 
+// dispatchEvent
+eventt.trigger("click", "*")
+eventt.trigger("*", ["#id", ".selector"])
 
-eventt
-    .unlisten('click', '*')
-
-eventt
-    .unlisten('*', '.selector')
-
-
-eventt
-    .trigger('click', '#selector-2')
-
-eventt
-    .trigger('*', ['.selector-1', '#selector-2'])
-
-
-eventt
-    .get('.selector')
+// removeEventListener
+eventt.unlisten("click", "*")
+eventt.unlisten("*", ".selector")
 ```
 
 
-## Contribute
+## Browser Support
+
+> Google Chrome Ready! Cross-browsers testing in progress.
+
+Fully supported by Evergreen Browsers (Edge, Opera, Safari, Firefox & Chrome) and IE 10+ browsers.
+
+> For **old browsers support like IE8 or IE9**, you'll need to manually include the following Polyfill library on your website:
+>
+```html
+<script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
+```
+
+
+## Contribution
 
 ```bash
 npm run watch
 npm run test
 ```
+
+
+## License
+
+[MIT](https://github.com/maoosi/eventt.js/blob/master/LICENSE.md) © 2017 Sylvain Simao

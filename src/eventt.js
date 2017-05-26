@@ -1,4 +1,4 @@
-export default class Eventt {
+class Eventt {
 
     /**
         --- CORE ---
@@ -20,14 +20,19 @@ export default class Eventt {
         --- API ---
     **/
 
-    listen (type, selector, func, opts = false) {
+    listen (type, selector, func, opts = null) {
     // add events listeners
         if (type !== undefined && selector !== undefined && typeof func === 'function') {
             let types = this._toArray(type)
             let selectors = this._toArray(selector)
+            let options = null
+
+            if (typeof opts === 'boolean') options = { capture: opts }
+            else if (typeof opts === 'object') options = opts
 
             selectors.forEach((_selector) => {
-                let targets = document.querySelectorAll(_selector)
+                let targets = typeof _selector === 'string' ?
+                    document.querySelectorAll(_selector) : this._toArray(_selector)
 
                 targets.forEach((_target) => {
                     types.forEach((_type) => {
@@ -36,7 +41,7 @@ export default class Eventt {
                             targetElem: _target,
                             eventType: _type,
                             func: func,
-                            opts: opts
+                            opts: options
                         }
 
                         this._addEvent(event)
@@ -80,7 +85,7 @@ export default class Eventt {
         return this
     }
 
-    trigger (type, selector) {
+    trigger (type, selector = '*') {
     // trigger events listeners
         if (type !== undefined && selector !== undefined) {
             let types = this._toArray(type)
@@ -102,6 +107,29 @@ export default class Eventt {
         return this
     }
 
+    get (selector, callback) {
+    // get events listeners
+        if (selector !== undefined && callback !== undefined) {
+            let selectors = this._toArray(selector)
+            let eventsList = []
+
+            this.events.forEach((_event) => {
+                let isTarget = this._isTarget(_event.targetElem, selectors)
+
+                if (isTarget) {
+                    eventsList.push(_event)
+                    this._debug('info', `Get eventListener ${ _event.eventType } on ${ _event.targetElem.outerHTML }.`)
+                }
+            })
+
+            callback.call(this, eventsList)
+        } else {
+            this._debug('error', 'Wrong parameters for the `get()` method.')
+        }
+
+        return this
+    }
+
     /**
         --- FUNCTIONS ---
     **/
@@ -112,7 +140,7 @@ export default class Eventt {
     }
 
     _removeEvent (event) {
-    // remove event listener=
+    // remove event listener
         event.targetElem.removeEventListener(event.eventType, event.func, event.opts || false)
     }
 
@@ -124,12 +152,15 @@ export default class Eventt {
     _isTarget(target, selectors) {
     // return true if target is part of selectors
         if (selectors[0] === '*') return true
-
         let found = false
-        let targets = document.querySelectorAll(selectors)
 
-        targets.forEach((el) => {
-            if (el === target) found = true
+        selectors.forEach((selector) => {
+            let targets = typeof selector === 'string' ?
+                document.querySelectorAll(selector) : this._toArray(selector)
+
+            targets.forEach((el) => {
+                if (el === target) found = true
+            })
         })
 
         return found
@@ -142,15 +173,17 @@ export default class Eventt {
 
     _toArray (data) {
     // convert the data passed to an array
-        return typeof data === 'string' ? [data] : data
+        return Array.isArray(data) ? data : [data]
     }
 
     _debug (type, message) {
     // log errors
         if (this.debug) {
             /* eslint-disable no-console */
-            console.log(`> Eventt.js | ${ type } :: ${ message }`)
+            console.debug(`> Eventt.js | ${ type } :: ${ message }`)
         }
     }
 
 }
+
+export default (...args) => { return new Eventt(...args) }
