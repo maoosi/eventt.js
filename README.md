@@ -7,13 +7,9 @@
 
 ## Roadmap
 
-- [ ] Dispatch browser events instead of function execution <sup>1</sup>
-- [ ] Catch all browser events <sup>2</sup>
+- [ ] Dispatch browser events instead of function execution <sup>1</sup> <sub><sup>https://stackoverflow.com/questions/2490825/how-to-trigger-event-in-javascript</sup></sub>
+- [ ] Catch all browser events <sup>2</sup> <sub><sup>http://stackoverflow.com/questions/9046741/get-event-listeners-attached-to-node-using-addeventlistener</sup></sub>
 - [ ] Create demo file for cross-browsers testing
-
-> <sup>1</sup> <sub><sup>https://stackoverflow.com/questions/2490825/how-to-trigger-event-in-javascript</sup></sub>
-> 
-> <sup>2</sup> <sub><sup>http://stackoverflow.com/questions/9046741/get-event-listeners-attached-to-node-using-addeventlistener</sup></sub>
 
 
 ## Installation
