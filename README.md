@@ -14,6 +14,8 @@
 
 ## Installation
 
+**⚠️ Dev in progress. v1.0.0 release coming soon.**
+
 ### Using NPM
 
 ```bash
@@ -54,7 +56,7 @@ eventt.unlisten("*", ".selector")
 
 ## Browser Support
 
-**Google Chrome Ready! Cross-browsers testing in progress.**
+**⚠️ Google Chrome Ready! Cross-browsers testing in progress.**
 
 Fully supported by Evergreen Browsers (Edge, Opera, Safari, Firefox & Chrome) and IE 10+ browsers.
 
