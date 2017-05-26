@@ -8,13 +8,12 @@
 
 ## Roadmap
 
-- [ ] Dispatch browser events instead of function execution
-> https://stackoverflow.com/questions/2490825/how-to-trigger-event-in-javascript
-
-- [ ] Catch all browser events
-> http://stackoverflow.com/questions/9046741/get-event-listeners-attached-to-node-using-addeventlistener
-
+- [ ] Dispatch browser events instead of function execution *
+- [ ] Catch all browser events **
 - [ ] Create demo file for cross-browsers testing
+
+> * https://stackoverflow.com/questions/2490825/how-to-trigger-event-in-javascript
+> ** http://stackoverflow.com/questions/9046741/get-event-listeners-attached-to-node-using-addeventlistener
 
 
 ## Installation
@@ -59,7 +58,7 @@ eventt.unlisten("*", ".selector")
 
 ## Browser Support
 
-> Google Chrome Ready! Cross-browsers testing in progress.
+**Google Chrome Ready! Cross-browsers testing in progress.**
 
 Fully supported by Evergreen Browsers (Edge, Opera, Safari, Firefox & Chrome) and IE 10+ browsers.
 
