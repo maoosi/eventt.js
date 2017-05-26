@@ -3,13 +3,15 @@
 🛎️ Tiny 1.4Kb event listeners manager.
 
 
-[![GitHub release](https://img.shields.io/github/release/maoosi/eventt.js.svg)](https://github.com/maoosi/eventt.js) [![Gemnasium](https://img.shields.io/gemnasium/maoosi/eventt.js.svg)](https://github.com/maoosi/eventt.js) [![label](https://img.shields.io/github/issues-raw/badges/shields/website.svg)](https://github.com/maoosi/eventt.js)
+[![Gemnasium](https://img.shields.io/gemnasium/maoosi/eventt.js.svg)](https://github.com/maoosi/eventt.js) [![GitHub release](https://img.shields.io/github/release/maoosi/eventt.js.svg)](https://github.com/maoosi/eventt.js)  [![label](https://img.shields.io/github/issues-raw/badges/maoosi/eventt.js.svg)](https://github.com/maoosi/eventt.js)
 
 
 ## Roadmap
 
-- [ ] Dispatch browser events instead of function execution https://stackoverflow.com/questions/2490825/how-to-trigger-event-in-javascript
-- [ ] Catch all browser events http://stackoverflow.com/questions/9046741/get-event-listeners-attached-to-node-using-addeventlistener
+- [ ] Dispatch browser events instead of function execution
+- > https://stackoverflow.com/questions/2490825/how-to-trigger-event-in-javascript
+- [ ] Catch all browser events
+- > http://stackoverflow.com/questions/9046741/get-event-listeners-attached-to-node-using-addeventlistener
 - [ ] Create demo file for cross-browsers testing
 
 
