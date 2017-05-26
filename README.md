@@ -9,9 +9,11 @@
 ## Roadmap
 
 - [ ] Dispatch browser events instead of function execution
-- > https://stackoverflow.com/questions/2490825/how-to-trigger-event-in-javascript
+> https://stackoverflow.com/questions/2490825/how-to-trigger-event-in-javascript
+
 - [ ] Catch all browser events
-- > http://stackoverflow.com/questions/9046741/get-event-listeners-attached-to-node-using-addeventlistener
+> http://stackoverflow.com/questions/9046741/get-event-listeners-attached-to-node-using-addeventlistener
+
 - [ ] Create demo file for cross-browsers testing
 
 
