@@ -8,7 +8,7 @@ after(() => { jsdom() })
 describe('Eventt.js', () => {
 
     // Instanciate Eventt.js
-    const eventt = Eventt({ /* debug: true */ })
+    const eventt = Eventt({ intercept: true })
 
     // Create DOM
     let dom = [
@@ -53,6 +53,37 @@ describe('Eventt.js', () => {
         // unlisten
         it('unlisten("click", "#id") should remove 1 eventListener', () => {
             eventt.unlisten('click', '#id')
+            strictEqual(eventt.events.length, 0)
+        })
+
+    })
+
+    // basic test
+    describe('window element listener', () => {
+
+        // listen
+        it('listen("resize", window, () => {}) should add 1 eventListener', () => {
+            eventt.listen('resize', window, () => t++)
+            strictEqual(eventt.events.length, 1)
+        })
+
+        // trigger
+        it('trigger("resize", window) should trigger 1 eventListener', () => {
+            eventt.trigger('resize', window)
+            strictEqual(t, 1)
+            t = 0
+        })
+
+        // list
+        it('list(window, (events) => {}) should list 1 eventListener', () => {
+            eventt.list(window, (events) => {
+                strictEqual(events.length, 1)
+            })
+        })
+
+        // unlisten
+        it('unlisten("resize", window) should remove 1 eventListener', () => {
+            eventt.unlisten('resize', window)
             strictEqual(eventt.events.length, 0)
         })
 
@@ -140,7 +171,7 @@ describe('Eventt.js', () => {
     })
 
     // advanced tests with multiple nodes
-    describe('advanced, multiple nodes', () => {
+    describe('advanced multiple nodes', () => {
 
         // listen
         it('listen("click", ["#id", ".selector"], () => {}) should add 3 eventListener\'s', () => {
@@ -239,6 +270,37 @@ describe('Eventt.js', () => {
         // unlisten
         it('unlisten("*") should remove all eventListener\'s', () => {
             eventt.unlisten('*')
+            strictEqual(eventt.events.length, 0)
+        })
+
+    })
+
+    // basic test
+    describe('intercept native addEventListener', () => {
+
+        // intercept
+        it('addEventListener() should intercept 1 eventListener', () => {
+            document.addEventListener('resize', () => t++)
+            strictEqual(eventt.events.length, 1)
+        })
+
+        // trigger
+        it('trigger("resize", document) should trigger 1 eventListener', () => {
+            eventt.trigger('resize', document)
+            strictEqual(t, 1)
+            t = 0
+        })
+
+        // list
+        it('list(document, (events) => {}) should list 1 eventListener', () => {
+            eventt.list(document, (events) => {
+                strictEqual(events.length, 1)
+            })
+        })
+
+        // unlisten
+        it('unlisten("resize", document) should remove 1 eventListener', () => {
+            eventt.unlisten('resize', document)
             strictEqual(eventt.events.length, 0)
         })
 

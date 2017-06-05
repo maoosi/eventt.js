@@ -1,21 +1,11 @@
 # Eventt.js
 
-🛎️ Tiny 1.4Kb event listeners manager.
+🛎️ Tiny 2.1Kb event listeners manager.
 
 [![Gemnasium](https://img.shields.io/gemnasium/maoosi/eventt.js.svg)](https://github.com/maoosi/eventt.js) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/maoosi/eventt.js/master/LICENSE.md) [![GitHub release](https://img.shields.io/github/release/maoosi/eventt.js.svg)](https://github.com/maoosi/eventt.js) [![GitHub issues](https://img.shields.io/github/issues/maoosi/eventt.js.svg)](https://github.com/maoosi/eventt.js/issues)
 
 
-## Roadmap v1.0.0
-
-- [ ] Dispatch browser events instead of function execution <sup>1</sup> <sub><sup>https://stackoverflow.com/questions/2490825/how-to-trigger-event-in-javascript</sup></sub>
-- [ ] Catch all browser events <sup>2</sup> <sub><sup>http://stackoverflow.com/questions/9046741/get-event-listeners-attached-to-node-using-addeventlistener</sup></sub>
-- [ ] Create demo file for cross-browsers testing
-- [ ] Travis CI implementation
-
-
 ## Installation
-
-**⚠️ Dev in progress. v1.0.0 release coming soon.**
 
 ### Using NPM
 
@@ -35,11 +25,12 @@ npm i eventt.js --save
 ```javascript
 import Eventt from 'eventt.js'
 
-// create events instance/group, optional debug setting
-const eventt = Eventt({ /* debug: true */ })
+// create events instance/group
+const eventt = Eventt()
 
 // addEventListener
 eventt.listen("click", "#id", () => { /* callback */ })
+eventt.listen("resize", window, () => { /* callback */ })
 eventt.listen(["click", "resize"], ["#id", ".selector"], () => { /* callback */ }, { /* opts */ })
 
 // getEventListeners
@@ -55,13 +46,21 @@ eventt.unlisten("*", ".selector")
 ```
 
 
-## Browser Support
+## Options
 
-**⚠️ Google Chrome Ready! Cross-browsers testing in progress.**
+It is possible to pass different options to the `Event({ /* options here */ })` instance:
+
+| Option | Type | Default | Description |
+| --- | --- | --- | --- |
+| `intercept` | *boolean* | `false` | If set to `true`, all the native `.addEventListener()` and `.removeEventListener()` calls will be intercepted and transformed into `.listen()` and `.unlisten()`. This can be particularly useful in case you want to implement Eventt.js into an already existing project, without having to update your existing code. |
+| `debug` | *boolean* | `false` | If set to `true`, every action performed will output debugging information into the `console`. |
+
+
+## Browser Support
 
 Fully supported by Evergreen Browsers (Edge, Opera, Safari, Firefox & Chrome) and IE 10+ browsers.
 
-> For **older browsers support like IE9**, you'll need to include the following Polyfill library on your site:
+> For **older browsers support like IE9**, you may need to include the following Polyfill library on your site:
 >
 ```html
 <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>

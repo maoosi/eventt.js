@@ -1,3 +1,5 @@
+import './polyfills'
+
 class Eventt {
 
     /**
@@ -7,11 +9,14 @@ class Eventt {
     constructor (options = {}) {
     // instance constructor
         this.options = {
+            intercept: options.intercept || false,
             debug: options.debug || false
         }
 
         this.debug = this.options.debug
         this.events = []
+
+        if (this.options.intercept) this._interceptNative()
 
         return this
     }
@@ -32,7 +37,7 @@ class Eventt {
 
             selectors.forEach((_selector) => {
                 let targets = typeof _selector === 'string' ?
-                    document.querySelectorAll(_selector) : this._toArray(_selector)
+                    this._objToArray(document.querySelectorAll(_selector)) : this._toArray(_selector)
 
                 targets.forEach((_target) => {
                     types.forEach((_type) => {
@@ -47,7 +52,7 @@ class Eventt {
                         this._addEvent(event)
                         this.events.push(event)
 
-                        this._debug('info', `Add eventListener ${ _type } on ${ _target.outerHTML }.`)
+                        this._debug('info', `Add eventListener ${ _type } on ${ this._whichElement(_target) }.`)
 
                     })
                 })
@@ -73,7 +78,7 @@ class Eventt {
                 if (isTarget && isType) {
                     removables.push(_event)
                     this._removeEvent(_event)
-                    this._debug('info', `Remove eventListener ${ _event.eventType } on ${ _event.targetElem.outerHTML }.`)
+                    this._debug('info', `Remove eventListener ${ _event.eventType } on ${ this._whichElement(_event.targetElem) }.`)
                 }
             })
 
@@ -97,7 +102,7 @@ class Eventt {
 
                 if (isTarget && isType) {
                     this._triggerEvent(_event)
-                    this._debug('info', `Trigger eventListener ${ _event.eventType } on ${ _event.targetElem.outerHTML }.`)
+                    this._debug('info', `Trigger eventListener ${ _event.eventType } on ${ this._whichElement(_event.targetElem) }.`)
                 }
             })
         } else {
@@ -118,7 +123,7 @@ class Eventt {
 
                 if (isTarget) {
                     eventsList.push(_event)
-                    this._debug('info', `List eventListener ${ _event.eventType } on ${ _event.targetElem.outerHTML }.`)
+                    this._debug('info', `List eventListener ${ _event.eventType } on ${ this._whichElement(_event.targetElem) }.`)
                 }
             })
 
@@ -134,14 +139,87 @@ class Eventt {
         --- FUNCTIONS ---
     **/
 
+    _interceptNative () {
+        let _addEventt = (target, type, func, options) => {
+            this._debug('info', `Native addEventListener ${ type } intercepted on ${ this._whichElement(target) }.`)
+            this.listen(type, target, func, options)
+        }
+        let _removeEventt = (target, type) => {
+            this._debug('info', `Native removeEventListener ${ type } intercepted on ${ this._whichElement(target) }.`)
+            this.unlisten(type, target)
+        }
+
+        if (typeof Element !== 'undefined') {
+            let e_addEventL = Element.prototype.addEventListener
+            Element.prototype.addEventListener = function(type, func, options) {
+                if (typeof options !== 'undefined' && typeof options.eventt !== 'undefined')
+                    e_addEventL.call(this, type, func, options)
+                else
+                    _addEventt(this, type, func, options)
+            }
+            let e_removeEventL = Element.prototype.removeEventListener
+            Element.prototype.removeEventListener = function(type, func, options) {
+                if (typeof options !== 'undefined' && typeof options.eventt !== 'undefined')
+                    e_removeEventL.call(this, type, func, options)
+                else
+                    _removeEventt(this, type)
+            }
+        }
+
+        if (typeof Window !== 'undefined') {
+            let w_addEventL = Window.prototype.addEventListener
+            Window.prototype.addEventListener = function(type, func, options) {
+                if (typeof options !== 'undefined' && typeof options.eventt !== 'undefined')
+                    w_addEventL.call(this, type, func, options)
+                else
+                    _addEventt(this, type, func, options)
+            }
+            let w_removeEventL = Window.prototype.removeEventListener
+            Window.prototype.removeEventListener = function(type, func, options) {
+                if (typeof options !== 'undefined' && typeof options.eventt !== 'undefined')
+                    w_removeEventL.call(this, type, func, options)
+                else
+                    _removeEventt(this, type)
+            }
+        }
+
+        if (typeof Document !== 'undefined') {
+            let d_addEventL = Document.prototype.addEventListener
+            Document.prototype.addEventListener = function(type, func, options) {
+                if (typeof options !== 'undefined' && typeof options.eventt !== 'undefined')
+                    d_addEventL.call(this, type, func, options)
+                else
+                    _addEventt(this, type, func, options)
+            }
+            let d_removeEventL = Document.prototype.removeEventListener
+            Document.prototype.removeEventListener = function(type, func, options) {
+                if (typeof options !== 'undefined' && typeof options.eventt !== 'undefined')
+                    d_removeEventL.call(this, type, func, options)
+                else
+                    _removeEventt(this, type)
+            }
+        }
+    }
+
     _addEvent (event) {
     // add event listener
-        event.targetElem.addEventListener(event.eventType, event.func, event.opts || false)
+        event.targetElem.addEventListener(event.eventType, event.func, this._transformOptions(event.opts))
     }
 
     _removeEvent (event) {
     // remove event listener
-        event.targetElem.removeEventListener(event.eventType, event.func, event.opts || false)
+        event.targetElem.removeEventListener(event.eventType, event.func, this._transformOptions(event.opts))
+    }
+
+    _transformOptions (options) {
+    // filter options
+        let _options = (typeof options === 'boolean') ? { capture: options } : (options || {})
+        return Object.assign({ eventt: true }, _options)
+    }
+
+    _whichElement (target) {
+    // return element info
+        return (typeof target.outerHTML !== 'undefined') ? target.outerHTML : String(target)
     }
 
     _triggerEvent (event) {
@@ -156,7 +234,7 @@ class Eventt {
 
         selectors.forEach((selector) => {
             let targets = typeof selector === 'string' ?
-                document.querySelectorAll(selector) : this._toArray(selector)
+                this._objToArray(document.querySelectorAll(selector)) : this._toArray(selector)
 
             targets.forEach((el) => {
                 if (el === target) found = true
@@ -174,6 +252,11 @@ class Eventt {
     _toArray (data) {
     // convert the data passed to an array
         return Array.isArray(data) ? data : [data]
+    }
+
+    _objToArray (obj) {
+    // convert the obj passed into an array
+        return Object.keys(obj).map(key => obj[key])
     }
 
     _debug (type, message) {

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1">
+
+    <title>Eventt.js</title>
+
+    <style media="screen">
+        body {
+            margin: 0;
+        }
+        #elem {
+            width: 100%;
+            height: 90%;
+            top: auto;
+            bottom: 0;
+            left: 0;
+            position: absolute;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .buttons {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: #ccc;
+            width: 100%;
+            height: 10%;
+        }
+        .button {
+            cursor: pointer;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="buttons">
+        <button class="button" onclick="bindEvents()">bind</button>
+        <button class="button" onclick="unbindEvents()">unbind</button>
+        <button class="button" onclick="triggerEvents()">trigger</button>
+        <button class="button" onclick="listEvents()">list</button>
+    </div>
+
+    <div id="elem"></div>
+
+    <script src="../dist/eventt.js"></script>
+    <script>
+        var eventt = Eventt({ debug: true, intercept: true })
+
+        var bindEvents = function () {
+            eventt.listen(['click', 'touch'], ['#elem'], function () {
+                console.log('## Exec: click function')
+            })
+            eventt.listen('resize', document, function () {
+                console.log('## Exec: resize document function')
+            })
+        }
+
+        var triggerEvents = function () {
+            eventt.trigger('click', '#elem')
+            eventt.trigger('resize', window)
+            eventt.trigger('resize', document)
+        }
+
+        var unbindEvents = function () {
+            eventt.unlisten('*')
+        }
+
+        var listEvents = function () {
+            eventt.list("#elem", function (events) {
+                console.log('## List:', events)
+            })
+        }
+
+        window.addEventListener('resize', function () {
+            console.log('## Exec: resize window call (native)')
+        })
+    </script>
+
+</body>
+</html>
