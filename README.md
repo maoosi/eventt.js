@@ -2,7 +2,7 @@
 
 🛎️ Tiny 2.1Kb event listeners manager.
 
-[![Gemnasium](https://img.shields.io/gemnasium/maoosi/eventt.js.svg)](https://github.com/maoosi/eventt.js) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/maoosi/eventt.js/master/LICENSE.md) [![GitHub release](https://img.shields.io/github/release/maoosi/eventt.js.svg)](https://github.com/maoosi/eventt.js) [![GitHub issues](https://img.shields.io/github/issues/maoosi/eventt.js.svg)](https://github.com/maoosi/eventt.js/issues)
+[![Gemnasium](https://img.shields.io/gemnasium/maoosi/eventt.js.svg)](https://github.com/maoosi/eventt.js) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/maoosi/eventt.js/master/LICENSE.md) [![GitHub release](https://img.shields.io/github/release/maoosi/eventt.js.svg)](https://github.com/maoosi/eventt.js) [![GitHub issues](https://img.shields.io/github/issues/maoosi/eventt.js.svg)](https://github.com/maoosi/eventt.js/issues) [![Build Status](https://travis-ci.org/maoosi/eventt.js.svg?branch=master)](https://travis-ci.org/maoosi/eventt.js)
 
 
 ## Installation
