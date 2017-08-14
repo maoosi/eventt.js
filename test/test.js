@@ -275,6 +275,36 @@ describe('Eventt.js', () => {
 
     })
 
+    // events grouping
+    describe('target specific groups of events with UID', () => {
+
+        // unlisten specific
+        it('unlisten("*", window, "123") should only remove events with opts: { uid: "123" }', () => {
+            eventt.listen('resize', window, () => {}, { uid: "123" })
+            eventt.listen('click', window, () => {}, { uid: "123" })
+            eventt.listen('resize', window, () => {}, { uid: "1234" })
+            eventt.listen('resize', window, () => {}, {})
+            eventt.listen('resize', window, () => {})
+            eventt.unlisten('*', window, '123')
+            strictEqual(eventt.events.length, 3)
+            eventt.unlisten('*', '*') // remove everything
+        })
+
+        // list specific
+        it('trigger("*", window, "123") should only trigger events with opts: { uid: "123" }', () => {
+            eventt.listen('resize', window, () => t++, { uid: "123" })
+            eventt.listen('click', window, () => t++, { uid: "123" })
+            eventt.listen('resize', window, () => t++, { uid: "1234" })
+            eventt.listen('resize', window, () => t++, {})
+            eventt.listen('resize', window, () => t++)
+            eventt.trigger('*', window, '123')
+            strictEqual(t, 2)
+            t = 0
+            eventt.unlisten('*', '*') // remove everything
+        })
+
+    })
+
     // basic test
     describe('intercept native addEventListener', () => {
 

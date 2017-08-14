@@ -16,7 +16,7 @@ npm i eventt.js --save
 ### Unpkg CDN
 
 ```html
-<script src="https://unpkg.com/eventt.js@1.0.0/dist/eventt.js"></script>
+<script src="https://unpkg.com/eventt.js@1.1.0/dist/eventt.js"></script>
 ```
 
 
@@ -32,6 +32,7 @@ const eventt = Eventt()
 eventt.listen("click", "#id", () => { /* callback */ })
 eventt.listen("resize", window, () => { /* callback */ })
 eventt.listen(["click", "resize"], ["#id", ".selector"], () => { /* callback */ }, { /* opts */ })
+eventt.listen("resize", window, () => { /* callback */ }, { uid: 'group-id' })
 
 // getEventListeners
 eventt.list(".selector", (events) => { /* first argument = events array */ })
@@ -39,10 +40,12 @@ eventt.list(".selector", (events) => { /* first argument = events array */ })
 // dispatchEvent
 eventt.trigger("click", "*")
 eventt.trigger("*", ["#id", ".selector"])
+eventt.trigger("resize", window, 'group-id')
 
 // removeEventListener
 eventt.unlisten("click", "*")
 eventt.unlisten("*", ".selector")
+eventt.unlisten("*", window, 'group-id')
 ```
 
 

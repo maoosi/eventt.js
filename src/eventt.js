@@ -64,7 +64,7 @@ class Eventt {
         return this
     }
 
-    unlisten (type, selector = '*') {
+    unlisten (type, selector = '*', uid = null) {
     // remove events listeners
         if (type !== undefined) {
             let types = this._toArray(type)
@@ -74,8 +74,9 @@ class Eventt {
             this.events.forEach((_event) => {
                 let isTarget = this._isTarget(_event.targetElem, selectors)
                 let isType = this._isType(_event.eventType, types)
+                let isTargetUid = (uid === null) || (_event.opts !== null && _event.opts['uid'] != undefined && _event.opts.uid === uid)
 
-                if (isTarget && isType) {
+                if (isTarget && isType && isTargetUid) {
                     removables.push(_event)
                     this._removeEvent(_event)
                     this._debug('info', `Remove eventListener ${ _event.eventType } on ${ this._whichElement(_event.targetElem) }.`)
@@ -90,7 +91,7 @@ class Eventt {
         return this
     }
 
-    trigger (type, selector = '*') {
+    trigger (type, selector = '*', uid = null) {
     // trigger events listeners
         if (type !== undefined && selector !== undefined) {
             let types = this._toArray(type)
@@ -99,8 +100,9 @@ class Eventt {
             this.events.forEach((_event) => {
                 let isTarget = this._isTarget(_event.targetElem, selectors)
                 let isType = this._isType(_event.eventType, types)
+                let isTargetUid = (uid === null) || (_event.opts !== null && _event.opts['uid'] != undefined && _event.opts.uid === uid)
 
-                if (isTarget && isType) {
+                if (isTarget && isType && isTargetUid) {
                     this._triggerEvent(_event)
                     this._debug('info', `Trigger eventListener ${ _event.eventType } on ${ this._whichElement(_event.targetElem) }.`)
                 }
